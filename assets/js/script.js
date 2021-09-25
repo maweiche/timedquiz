@@ -19,7 +19,7 @@ function init() {
 //The startGame function is called when the start button is clicked
 function startGame() {
     isWin = false;
-    timerCount = 60;
+    timerCount = 10;
     //Prevents start butto from being clicked when round is in progress
     startButton.disabled = true;
     renderQText()
@@ -31,31 +31,59 @@ function gameOver() {
     qText.textContent = "The Quiz is now over!"
     // scoreCounter
     startButton.disabled = false;
-    // setScore()
+    setScore();
 }
 
-//The startTimer function starts and stops the timer and triggers gameOver
-function startTimer() {
-    //Sets timer
-    timer = setInterval(function() {
-        timerCount--;
-        timerEl.textContent = timerCount;
-        if (timerCount >= 0) {
-            //Tests if win condition is met
-            if (isWin && timerCount > 0) {
-                //Clears interval and stops timer
-                clearInterval(timer);
-                gameOver();
-            }
-        }
-        //Tests if time has run out
-        if (timerCount === 0) {
-            //Clears interval
-            clearInverval(timer);
-            gameOver();
-        }
-     }, 1000);
+//The loseGame function is called when timer reaches 0
+function loseGame() {
+    qText.textContent = "The Quiz is now over!"
+    //scoreCounter
+    startButton.disabled = false;
+    setScore();
 }
+
+function startTimer() {
+    // Sets timer
+    timer = setInterval(function() {
+      timerCount--;
+      timerEl.textContent = timerCount;
+      if (timerCount >= 0) {
+        // Tests if win condition is met
+        if (isWin && timerCount > 0) {
+          // Clears interval and stops timer
+          clearInterval(timer);
+          winGame();
+        }
+      }
+      // Tests if time has run out
+      if (timerCount === 0) {
+        clearInterval(timer);
+        loseGame();
+      }
+    }, 1000);
+  }
+
+//The startTimer function starts and stops the timer and triggers gameOver
+// function startTimer() {
+//     //Sets timer
+//     timer = setInterval(function() {
+//         timerCount--;
+//         timerEl.textContent = timerCount;
+//         if (timerCount >= 0) {
+//             //Tests if win condition is met
+//             if (isWin && timerCount > 0) {
+//                 //Clears interval and stops timer
+//                 clearInterval(timer);
+//                 gameOver();
+//             }
+//         }
+//         //Tests if time has run out
+//         if (timerCount === 0) {
+//             clearInverval(timer);
+//             loseGame();
+//         }
+//      }, 1000);
+// }
 //Creates question text on screen
 function renderQText() {
     //Picks question from question array
