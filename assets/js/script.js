@@ -3,6 +3,9 @@ var qOptions = document.querySelector(".options-words")
 var score = document.querySelector(".score");
 var timerEl = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var submitButton = document.getElementsByClassName("submit");
+var nextButton = document.getElementsByClassName("next");
+
 
 var scoreCounter = 0;
 var isWin = false;
@@ -112,7 +115,21 @@ var iterate(id) {
         op4.style.backgroundColor = "pink";
         selected = op4.value;
     })
+    submitButton[0].addEventListener("click", => {
+        if (selected == "true") {
+            result[0].innerHTML = "Correct!";
+            result[0].style.color = "green";
+        } else {
+            result[0].innerHTML = "Wrong!";
+            result[0].style.color = "Red!";
+        }
+    })
 }
+//Function for if Quiz is started 
+if (start) {
+    iterate("0");
+}
+
 
 
 
