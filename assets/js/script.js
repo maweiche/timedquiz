@@ -54,8 +54,7 @@ var questions = [
     },
     ];
 //New idea
-var start = true;
-
+startButton.addEventListener("click", startQuiz);
 
 //maybe change const to var if funky
 function iterate(id) {
@@ -134,9 +133,50 @@ function iterate(id) {
     })
 }
 //Function for if Quiz is started 
-if (start) {
+function startQuiz () {
+    
+    //render qText
     iterate("0");
+     // function startGame() {
+    isWin = false;
+    timerCount = 10;
+    //Prevents start button from being clicked when round is in progress
+    startButton.disabled = true;
+    startTimer();
+//The gameOver function is called when the game completion condition is met
+function gameOver() {
+    qText.textContent = "The Quiz is now over!"
+    // scoreCounter
+    startButton.disabled = false;
 }
+
+//The loseGame function is called when timer reaches 0
+function loseGame() {
+    qText.textContent = "The Quiz is now over!"
+    //scoreCounter
+    startButton.disabled = false;
+}
+function startTimer() {
+    // Sets timer
+    timer = setInterval(function() {
+      timerCount--;
+      timerEl.textContent = timerCount;
+      if (timerCount >= 0) {
+        // Tests if win condition is met
+        if (isWin && timerCount > 0) {
+          // Clears interval and stops timer
+          clearInterval(timer);
+          winGame();
+        }
+      }
+      // Tests if time has run out
+      if (timerCount === 0) {
+        clearInterval(timer);
+        loseGame();
+      }
+    }, 1000);
+  }
+};
 
 var id = 0;
 
