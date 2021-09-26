@@ -123,6 +123,10 @@ function iterate(id) {
         } else {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
+        }if (id < 3) {
+            id++;
+            iterate(id);
+            console.log(id);
         }
     })
 }
@@ -133,14 +137,10 @@ if (start) {
 
 var id = 0;
 
-nextButton.addEventListener("click", () => {
-    start = false;
-    if (id < 3) {
-        id++;
-        iterate(id);
-        console.log(id);
-    }
-})
+// nextButton.addEventListener("click", () => {
+//     start = false;
+    
+// })
 
 
 

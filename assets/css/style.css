@@ -118,7 +118,8 @@ section {
     border-radius: 25%;
 }
 
-.submit, .next {
+.submit {
+ /* .next { */
     background-color: yellowgreen;
     width: 30vw;
     height: 8vh;
