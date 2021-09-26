@@ -95,7 +95,7 @@ section {
         padding: 20px;
 }
 
-.question-words {
+.question-words, .verdict {
     line-height: 100px;
 }
 
