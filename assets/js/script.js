@@ -49,7 +49,70 @@ var questions = [
     },
     ];
 //New idea
+var start = true;
 
+
+//maybe change const to var if funky
+var iterate(id) {
+
+    //Displaying result section
+    score[0].innerText = "";
+
+    //Display Question
+    qText.innerText = questions[id].q;
+
+    //Call Options by Id
+    var op1 = document.getElementById("op1");
+    var op2 = document.getElementById("op2");
+    var op3 = document.getElementById("op3");
+    var op4 = document.getElementById("op4");
+
+    //Display Options text
+    op1.innerText = questions[id].a[0].text;
+    op2.innerText = questions[id].a[1].text;
+    op3.innerText = questions[id].a[2].text;
+    op4.innerText = questions[id].a[3].text;
+
+    //Establish true/false value to each option
+    op1.value = questions[id].a[0].isCorrect;
+    op2.value = questions[id].a[1].isCorrect;
+    op3.value = questions[id].a[2].isCorrect;
+    op4.value = questions[id].a[3].isCorrect;
+
+    var selected = "";
+
+    op1.addEventListener("click", () => {
+        op1.style.backgroundColor = "pink";
+        op2.style.backgroundColor = "green";
+        op3.style.backgroundColor = "green";
+        op4.style.backgroundColor = "green";
+        selected = op1.value;
+    })
+
+    op2.addEventListener("click", () => {
+        op1.style.backgroundColor = "green";
+        op2.style.backgroundColor = "pink";
+        op3.style.backgroundColor = "green";
+        op4.style.backgrondColor = "green";
+        selected = op2.value;
+    })
+
+    op3.addEventListener("click", () => {
+        op1.style.backgroundCOlor = "green";
+        op2.style.backgroundColor = "green";
+        op3.style.backgroundColor = "pink";
+        op4.style.backgroundColor = "green";
+        selected = op3.value;
+    })
+
+    op4.addEventListener("click", () => {
+        op1.style.backgroundColor = "green";
+        op2.style.backgroundColor = "green";
+        op3.style.backgroundColor = "green";
+        op4.style.backgroundColor = "pink";
+        selected = op4.value;
+    })
+}
 
 
 
