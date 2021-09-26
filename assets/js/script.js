@@ -125,16 +125,18 @@ function renderQText(index) {
             butt.innerHTML=chosenQOptions[i];
             qOptions.appendChild(butt);  
         }
+
+        qOptions.addEventListener("click", function(event) {
+            var clickedOption = event.target;
+            if (clickedOption = chosenQ.answer){
+                score++;
+            }
+            console.log(clickedOption);
+            chosenQOptions = []; // need to empty question options array somehow
+        });
+    }        dispOptions();
     }
-    dispOptions();
-    qOptions.addEventListener("click", function(event) {
-        var clickedOption = event.target;
-        if (clickedOption = chosenQ.answer){
-            score++;
-        }
-        console.log(clickedOption);
-    });
-}
+
 
     // var queTag = "Question" + ":" +questions[index].question[2];
 //     var optionTag = '<div class="option"><span>'+ questions[index].options[0]+'</span></div>'
