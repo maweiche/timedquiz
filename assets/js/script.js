@@ -13,47 +13,27 @@ var timerCount;
 var questions = [
     {
         number: 1,
-        question: "Who thou?",
-        answer: "A",
-        options: [
-            "A",
-            "B",
-            "C",
-            "D",
-        ]
+        question: "How many states are in the United States?",
+        answer: "50",
+        options: ["25","50","49","51"]
     },
     {
         number: 2,
-        question: "Where thou?",
-        answer: "A",
-        options: [
-            "A",
-            "B",
-            "C",
-            "D",
-        ]
+        question: "The cow jumped over the -- what?",
+        answer: "moon",
+        options: ["moon","cat","car","house"]
     },
     {
         number: 3,
-        question: "Why thou?",
-        answer: "A",
-        options: [
-            "A",
-            "B",
-            "C",
-            "D",
-        ]
+        question: "A unicyle has how many wheels?",
+        answer: "one",
+        options: ["one","two","three","none"]
     },
     {
         number: 4,
-        question: "Who thou?",
-        answer: "A",
-        options: [
-            "A",
-            "B",
-            "C",
-            "D",
-        ]
+        question: "Who won the 2020 NBA Championship?",
+        answer: "bucks",
+        options: ["raptors","panthers","hornets","bucks"]
     },
     ];
 
@@ -135,7 +115,18 @@ function renderQText(index) {
     //Picks question from question array
     chosenQ = questions[Math.floor(Math.random() * questions.length)];
     qText.textContent = chosenQ.question;
-    qOptions.textContent = chosenQ.options;
+    // qOptions.textContent = chosenQ.options[0],chosenQ.options[1],chosenQ.options[2],chosenQ.options[3];
+    var chosenQOptions = [chosenQ.options[0], chosenQ.options[1], chosenQ.options[2],chosenQ.options[3]];
+
+    function dispOptions () {
+        // var more=document.getElementById("more");
+        for (var i=0; i < chosenQOptions.length; i++) {
+            var butt=document.createElement("button");
+            butt.innerHTML=chosenQOptions[i];
+            qOptions.appendChild(butt);
+        }
+    }
+    dispOptions();
 }
     // var queTag = "Question" + ":" +questions[index].question[2];
 //     var optionTag = '<div class="option"><span>'+ questions[index].options[0]+'</span></div>'
