@@ -73,14 +73,14 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       timerEl.textContent = timerCount;
-      if (timerCount >= 0) {
-        // Tests if win condition is met
-        if (isWin && timerCount > 0) {
-          // Clears interval and stops timer
-          clearInterval(timer);
-          winGame();
-        }
-      }
+    //   if (timerCount >= 0) {
+    //     // Tests if win condition is met
+    //     if (isWin && timerCount > 0) {
+    //       // Clears interval and stops timer
+    //       clearInterval(timer);
+    //       winGame();
+    //     }
+    //   }
       // Tests if time has run out
       if (timerCount === 0) {
         clearInterval(timer);
@@ -123,14 +123,19 @@ function renderQText(index) {
         for (var i=0; i < chosenQOptions.length; i++) {
             var butt=document.createElement("button");
             butt.innerHTML=chosenQOptions[i];
-            qOptions.appendChild(butt);
-            clickedOption = qOptions.addEventListener("click", checkWin);
+            qOptions.appendChild(butt);  
         }
-        
     }
     dispOptions();
-
+    qOptions.addEventListener("click", function(event) {
+        var clickedOption = event.target;
+        if (clickedOption = chosenQ.answer){
+            score++;
+        }
+        console.log(clickedOption);
+    });
 }
+
     // var queTag = "Question" + ":" +questions[index].question[2];
 //     var optionTag = '<div class="option"><span>'+ questions[index].options[0]+'</span></div>'
 //     + '<div class="option"><span>'+ questions[index].options[1]+'</span></div>'
@@ -169,9 +174,9 @@ function getHighScores() {
 
 function checkWin() {
     //If the button selected is the correct answer then set isWin to true
-    if (chosenQ.answer = clickedOption) {
+    if (chosenQ.answer.textContent = clickedOption) {
         //This value is used in the timer function to test if gameOver condition is met
-        isWin = true;
+        scoreCounter++;
     }
 }
 // Tests if guessed selection is the rightAnswer
