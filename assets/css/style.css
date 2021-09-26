@@ -118,6 +118,14 @@ section {
     border-radius: 25%;
 }
 
+.submit {
+    background-color: yellowgreen;
+    width: 30vw;
+    height: 8vh;
+    padding: 5px;
+    font-size: larger;
+}
+
 .large-font {
     font-size: 18px;
     text-align: center;
