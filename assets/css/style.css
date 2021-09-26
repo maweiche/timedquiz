@@ -99,6 +99,25 @@ section {
     line-height: 100px;
 }
 
+.optionsWords {
+    display: flex;
+    justify-content: space; 
+    margin: 10px;
+    padding: 5px;
+    width: 80vw;
+    height: 20vh;
+    background-color: darkblue;
+}
+
+.option {
+    padding: 10px;
+    width: 15vw;
+    height: 10vh;
+    font-size: larger;
+    background-color: lightsalmon;
+    border-radius: 25%;
+}
+
 .large-font {
     font-size: 18px;
     text-align: center;

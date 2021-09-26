@@ -12,30 +12,66 @@ var timerCount;
 //Array of questions
 var questions = [
     {
-        number: 1,
-        question: "How many states are in the United States?",
-        answer: "50",
-        options: ["25","50","49","51"]
+        id: 0,
+        q: "How many states are in the United States?",
+        a: [{ text: "50", isCorrect: true},
+            { text: "25", isCorrect: false},
+            { text: "39", isCorrect: false},
+            { text: "51", isCorrect: false}
+        ]
     },
     {
-        number: 2,
-        question: "The cow jumped over the -- what?",
-        answer: "moon",
-        options: ["moon","cat","car","house"]
+        id: 1,
+        q: "The cow jumped over the -- what?",
+        a: [{ text: "moon", isCorrect: false},
+            { text: "sea", isCorrect: false},
+            { text: "cat", isCorrect: false},
+            { text: "moon", isCorrect: true}
+        ]
     },
     {
-        number: 3,
-        question: "A unicyle has how many wheels?",
-        answer: "one",
-        options: ["one","two","three","none"]
+        id: 2,
+        q: "A unicycle has how many tires?",
+        a: [{ text: "2", isCorrect: false},
+            { text: "12", isCorrect: false},
+            { text: "1", isCorrect: true},
+            { text: "11", isCorrect: false}
+        ]
     },
     {
-        number: 4,
-        question: "Who won the 2020 NBA Championship?",
-        answer: "bucks",
-        options: ["raptors","panthers","hornets","bucks"]
+        id: 3,
+        q: "What did I do to get in trouble?",
+        a: [{ text: "I should know..", isCorrect: false},
+            { text: "Nothing.", isCorrect: true},
+            { text: "What did I not do?", isCorrect: false},
+            { text: "The dishes.", isCorrect: false}
+        ]
     },
     ];
+//New idea
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //The ini function is called when the page loads
 function init() {
@@ -132,7 +168,7 @@ function renderQText(index) {
                 score++;
             }
             console.log(clickedOption);
-            chosenQOptions = []; // need to empty question options array somehow
+            chosenQOptions = []; // need to empty question options array somehowx`
         });
     }        dispOptions();
     }
