@@ -124,9 +124,12 @@ function renderQText(index) {
             var butt=document.createElement("button");
             butt.innerHTML=chosenQOptions[i];
             qOptions.appendChild(butt);
+            clickedOption = qOptions.addEventListener("click", checkWin);
         }
+        
     }
     dispOptions();
+
 }
     // var queTag = "Question" + ":" +questions[index].question[2];
 //     var optionTag = '<div class="option"><span>'+ questions[index].options[0]+'</span></div>'
@@ -166,7 +169,7 @@ function getHighScores() {
 
 function checkWin() {
     //If the button selected is the correct answer then set isWin to true
-    if (chosenQ = rightAnswer.join("")) {
+    if (chosenQ.answer = clickedOption) {
         //This value is used in the timer function to test if gameOver condition is met
         isWin = true;
     }

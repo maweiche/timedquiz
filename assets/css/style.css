@@ -12,6 +12,10 @@ body {
     background:coral;
 }
 
+h3 {
+    font-size: 18px;
+}
+
 .reset-button {
     font-size: 16px;
     height: 25px;
@@ -50,7 +54,7 @@ button {
 }
 
 header {
-    padding: 40px;
+    padding: 5px;
     text-align: center;
     background: blue;
     color: white;
@@ -73,7 +77,7 @@ section {
 
 .question {
     width: 55vw;
-    height: 400px;
+    height: 300px;
 }
 
 .results {
@@ -92,22 +96,23 @@ section {
 }
 
 .question-words {
-    line-height: 360px;
+    line-height: 100px;
 }
 
 .large-font {
-    font-size: 3.5em;
+    font-size: 18px;
     text-align: center;
 }
 
 .timer {
-    height: 240px;
-    padding: 10px;
+    height: 100px;
+    padding: 16px;
+    font-weight: bolder;
     background: red;
     color: white;
     text-align: center;
 }
 
 .timer-text{
-    padding: 55px;
+    padding: 5px;
 }
