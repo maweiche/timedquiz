@@ -12,6 +12,7 @@ var scoreCounter = 0;
 var isWin = false;
 var timer;
 var timerCount;
+var scoreUpdate = 0;
 
 //Array of questions
 var questions = [
@@ -58,9 +59,9 @@ var start = true;
 
 //maybe change const to var if funky
 function iterate(id) {
-
+    score.innerText = scoreUpdate;
     //Displaying result section
-    score.innerText = "";
+    // score.innerText = "";
 
     //Display Question
     qText.innerText = questions[id].q;
@@ -120,13 +121,15 @@ function iterate(id) {
         if (selected == "true") {
             verdict[0].innerHTML = "Correct!";
             verdict[0].style.color = "green";
+            scoreUpdate++;
         } else {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
         }if (id < 3) {
             id++;
             iterate(id);
-            console.log(id);
+            // console.log(id);
+            console.log(scoreUpdate);
         }
     })
 }
