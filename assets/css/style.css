@@ -109,7 +109,7 @@ section {
     background-color: darkblue;
 }
 
-.option {
+#op1, #op2, #op3, #op4 {
     padding: 10px;
     width: 15vw;
     height: 10vh;

@@ -1,5 +1,5 @@
 var qText = document.querySelector(".question-words");
-var qOptions = document.querySelector(".options-words")
+var qOption = document.querySelector(".option")
 var score = document.querySelector(".score");
 var timerEl = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
@@ -13,7 +13,11 @@ var isWin = false;
 var timer;
 var timerCount;
 var scoreUpdate = 0;
-
+document.querySelector("#op1").style.visibility = "hidden";
+document.querySelector("#op2").style.visibility = "hidden";
+document.querySelector("#op3").style.visibility = "hidden";
+document.querySelector("#op4").style.visibility = "hidden";
+document.querySelector(".submit").style.visibility  = "hidden";
 //Array of questions
 var questions = [
     {
@@ -139,7 +143,13 @@ function iterate(id) {
 }
 //Function for if Quiz is started 
 function startQuiz () {
-    
+    document.querySelector("#op1").style.visibility = "visible";
+    document.querySelector("#op2").style.visibility = "visible";
+    document.querySelector("#op3").style.visibility = "visible";
+    document.querySelector("#op4").style.visibility = "visible";
+    document.querySelector(".submit").style.visibility  = "visible";
+
+
     //render qText
     iterate("0");
      // function startGame() {
