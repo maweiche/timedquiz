@@ -160,6 +160,7 @@ function loseGame() {
     qText.textContent = "The Quiz is now over!"
     //scoreCounter
     startButton.disabled = false;
+    checkHighScore(account.score);
 }
 function startTimer() {
     // Sets timer
@@ -184,6 +185,62 @@ function startTimer() {
 };
 
 var id = 0;
+
+
+////HIGH SCORE AREA/////////////////////
+const  NUMBOFHIGHSCORES = 5;
+const  HIGHSCORES = "highScores";
+
+const highScoreString = localStorage.getItem(HIGHSCORES);
+const highScores = JSON.parse(highScoreString) ?? [];
+
+const lowestScore = highScores [NUMBOFHIGHSCORES - 1]?.score ?? 0;
+
+function checkHighScore(score) {
+    const  highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
+    const lowestScore = highScores[NUMBOFHIGHSCORES - 1]?.score ?? 0;
+
+    if (score > lowestScore) {
+        saveHighScore(score, highScores);
+        showHighScores();
+    }
+}
+
+
+function saveHighScore (score, highScores) {
+    var username = prompt("You have a high score! Enter name: ")
+    var newScore = { score, username };  
+
+    highScores.push(newScore);
+    highScores.sort((a, b) => b.score - a.score);
+    highScores.splice(NUMBOFHIGHSCORES);
+    localStorage.setItem(HIGHSCORES, JSON.stringify(highScores));
+}
+var highScoreList = document.getElementById(HIGHSCORES);
+
+highScoreList.innerHTML = highScores.map((score) =>
+    '<li>${score.score} - ${score.username}'
+    );
+
+function showHighScores () {
+    var highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
+    var highScoreList = document.getElementById(HIGHSCORES);
+
+    highScoreList.innerHTML = highScores
+    .map((score) => `<li>${score.score} - ${score.username}`)
+    .join('');
+}    
+
+
+
+
+
+
+
+
+
+
+
 
 // nextButton.addEventListener("click", () => {
 //     start = false;
