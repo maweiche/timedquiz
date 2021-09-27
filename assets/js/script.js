@@ -52,19 +52,24 @@ var questions = [
             { text: "The dishes.", isCorrect: false}
         ]
     },
+    {
+        id:4,
+        q: "Game Over!"
+    }
     ];
 //New idea
 startButton.addEventListener("click", startQuiz);
 
 //maybe change const to var if funky
 function iterate(id) {
+
+    
     score.innerText = scoreUpdate;
     //Displaying result section
     // score.innerText = "";
 
     //Display Question
     qText.innerText = questions[id].q;
-
     //Call Options by Id
     var op1 = document.getElementById("op1");
     var op2 = document.getElementById("op2");
@@ -117,20 +122,20 @@ function iterate(id) {
         selected = op4.value;
     })
     submitButton[0].addEventListener("click", () => {
-        if (selected == "true") {
+        if (id < 4) {
+            id++;
+            iterate(id);    
+            console.log(id);
+            // console.log(scoreUpdate);
+        } if (selected == "true") {
             verdict[0].innerHTML = "Correct!";
             verdict[0].style.color = "green";
             scoreUpdate++;
         } else {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
-        }if (id < 3) {
-            id++;
-            iterate(id);
-            // console.log(id);
-            console.log(scoreUpdate);
         }
-    })
+    }) 
 }
 //Function for if Quiz is started 
 function startQuiz () {
@@ -139,7 +144,7 @@ function startQuiz () {
     iterate("0");
      // function startGame() {
     isWin = false;
-    timerCount = 10;
+    timerCount = 60;
     //Prevents start button from being clicked when round is in progress
     startButton.disabled = true;
     startTimer();
@@ -163,10 +168,10 @@ function startTimer() {
       timerEl.textContent = timerCount;
       if (timerCount >= 0) {
         // Tests if win condition is met
-        if (isWin && timerCount > 0) {
+        if (qText.textContent === "Game Over!") {
           // Clears interval and stops timer
           clearInterval(timer);
-          winGame();
+          loseGame();
         }
       }
       // Tests if time has run out
