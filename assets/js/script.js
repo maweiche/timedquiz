@@ -8,7 +8,7 @@ var nextButton = document.getElementsByClassName("next")[0];
 var verdict = document.getElementsByClassName("verdict");
 var userName = document.querySelector(".userName");
 var scoreToRecord = document.querySelector(".scoreToRecord");
-var saveScores = document.getElementById(".saveScores");
+var saveScores = document.getElementsByClassName(".saveScores");
 var resetButton = document.getElementById(".resetButton");
 var highScores = document.querySelector(".highScores");
 
@@ -72,7 +72,6 @@ startButton.addEventListener("click", startQuiz);
 //The loseGame function is called when timer reaches 0
 function loseGame() {
     qText.textContent = "The Quiz is now over!"
-    //scoreCounter
     startButton.disabled = false;
     document.querySelector(".submit").style.visibility  = "hidden";
     document.querySelector("#op1").style.visibility = "hidden";
@@ -82,16 +81,19 @@ function loseGame() {
     document.querySelector(".highScores").style.visibility = "visible";
     clearInterval(timer);
 
-    // function saveFinalScore() {
-
-    //     scoreToRecord = scoreCounter;
-    //     var saveInput = {
-    //         initials: userName.value,
-    //         score: scoreToRecord.value.trim()
-    //     };
-    //     localStorage.setItem("saveInput", JSON.stringify(saveInput));
-    // }
-    // saveScores.addEventListener("click", saveScores);
+        function storeScoreInput() {
+        scoreToRecord = scoreCounter;
+        var saveInput = {
+            initials: userName.value,
+            score: scoreToRecord.value.trim()
+        };
+        document.getElementsByClassName(".saveScores").addEventListener("click", function(event) {
+            event.preventDefault();
+            storeScoreInput ();
+        });
+        localStorage.setItem("saveInput", JSON.stringify(saveInput));
+    };
+    
 }
 
 //maybe change const to var if funky
