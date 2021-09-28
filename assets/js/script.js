@@ -8,17 +8,17 @@ var nextButton = document.getElementsByClassName("next")[0];
 var verdict = document.getElementsByClassName("verdict");
 
 
-var scoreCounter = 69;
+var scoreCounter = 0;
 var isWin = false;
 var timer;
 var timerCount;
 score.innerHTML = scoreCounter;
-// var scoreUpdate = "0";
 document.querySelector("#op1").style.visibility = "hidden";
 document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
+
 //Array of questions
 var questions = [
     {
@@ -126,20 +126,18 @@ function iterate(id) {
         selected = op4.value;
     })
     submitButton[0].addEventListener("click", () => {
-        if (selected) {
+        if (selected == "true") {
             verdict[0].innerHTML = "Correct!"
             verdict[0].style.color = "green";
             scoreCounter++;
-        }if (selected = null) {
-            alert("Please select answer!");
         }if (id < 4) {
             id++;
             iterate(id);    
             // console.log(id);
-        } else {
+        } if (selected == "false") {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
-            selected = null;
+            timerCount -= 5;
         }  
         score.innerHTML = scoreCounter;
         return; 
@@ -176,7 +174,7 @@ function loseGame() {
     qText.textContent = "The Quiz is now over!"
     //scoreCounter
     startButton.disabled = false;
-    checkHighScore(account.score);
+    alert("Pay your developer");
 }
 function startTimer() {
     // Sets timer
@@ -199,7 +197,6 @@ function startTimer() {
     }, 1000);
   }
 };
-
 var id = 0;
 
 
