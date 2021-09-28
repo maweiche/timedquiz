@@ -81,6 +81,17 @@ function loseGame() {
     document.querySelector("#op4").style.visibility = "hidden";
     document.querySelector(".highScores").style.visibility = "visible";
     clearInterval(timer);
+
+    // function saveFinalScore() {
+
+    //     scoreToRecord = scoreCounter;
+    //     var saveInput = {
+    //         initials: userName.value,
+    //         score: scoreToRecord.value.trim()
+    //     };
+    //     localStorage.setItem("saveInput", JSON.stringify(saveInput));
+    // }
+    // saveScores.addEventListener("click", saveScores);
 }
 
 //maybe change const to var if funky
@@ -217,14 +228,7 @@ function startTimer() {
     }, 1000);
   }
 };
-function finalizeScore() {
 
-    scoreToRecord = scoreCounter;
-    var saveInput = {
-        initials: userName.value,
-        score: scoreToRecord.value.trim()
-    };
-}
 var id = 0;
 
 
