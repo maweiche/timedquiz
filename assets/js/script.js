@@ -6,7 +6,11 @@ var startButton = document.querySelector(".start-button");
 var submitButton = document.getElementsByClassName("submit");
 var nextButton = document.getElementsByClassName("next")[0];
 var verdict = document.getElementsByClassName("verdict");
-
+var userName = document.querySelector(".userName");
+var scoreToRecord = document.querySelector(".scoreToRecord");
+var saveScores = document.getElementById(".saveScores");
+var resetButton = document.getElementById(".resetButton");
+var highScores = document.querySelector(".highScores");
 
 var scoreCounter = 0;
 var isWin = false;
@@ -18,7 +22,7 @@ document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
-
+document.querySelector(".highScores").style.visibility = "hidden";
 //Array of questions
 var questions = [
     {
@@ -64,6 +68,14 @@ var questions = [
     ];
 //New idea
 startButton.addEventListener("click", startQuiz);
+
+//The loseGame function is called when timer reaches 0
+function loseGame() {
+    qText.textContent = "The Quiz is now over!"
+    //scoreCounter
+    startButton.disabled = false;
+    document.querySelector(".submit").style.visibility  = "hidden";
+}
 
 //maybe change const to var if funky
 function iterate(id) {
@@ -138,9 +150,13 @@ function iterate(id) {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
             timerCount -= 5;
-        }  
+        }if (qText.textContent === "Game Over!"){
+            loseGame();
+            iterate(id) = false;
+        }    
         score.innerHTML = scoreCounter;
-        return; 
+        return;
+        
     }) 
     console.log(scoreCounter);
 }
@@ -151,6 +167,7 @@ function startQuiz () {
     document.querySelector("#op3").style.visibility = "visible";
     document.querySelector("#op4").style.visibility = "visible";
     document.querySelector(".submit").style.visibility  = "visible";
+    document.querySelector(".highScores").style.visibility = "visible";
     
 
 
@@ -169,13 +186,7 @@ function gameOver() {
     startButton.disabled = false;
 }
 
-//The loseGame function is called when timer reaches 0
-function loseGame() {
-    qText.textContent = "The Quiz is now over!"
-    //scoreCounter
-    startButton.disabled = false;
-    alert("Pay your developer");
-}
+
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
@@ -197,7 +208,20 @@ function startTimer() {
     }, 1000);
   }
 };
+function finalizeScore() {
+
+    scoreToRecord = scoreCounter;
+    var saveInput = {
+        initials: userName.value,
+        score: scoreToRecord.value.trim()
+    };
+}
 var id = 0;
+
+
+
+
+
 
 
 ////HIGH SCORE AREA/////////////////////
