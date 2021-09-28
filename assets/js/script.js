@@ -8,11 +8,12 @@ var nextButton = document.getElementsByClassName("next")[0];
 var verdict = document.getElementsByClassName("verdict");
 
 
-var scoreCounter = 0;
+var scoreCounter = 69;
 var isWin = false;
 var timer;
 var timerCount;
-var scoreUpdate = 0;
+score.innerHTML = scoreCounter;
+// var scoreUpdate = "0";
 document.querySelector("#op1").style.visibility = "hidden";
 document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
@@ -32,7 +33,7 @@ var questions = [
     {
         id: 1,
         q: "The cow jumped over the -- what?",
-        a: [{ text: "moon", isCorrect: false},
+        a: [{ text: "dog", isCorrect: false},
             { text: "sea", isCorrect: false},
             { text: "cat", isCorrect: false},
             { text: "moon", isCorrect: true}
@@ -67,8 +68,7 @@ startButton.addEventListener("click", startQuiz);
 //maybe change const to var if funky
 function iterate(id) {
 
-    
-    score.innerText = scoreUpdate;
+    // score.innerHTML = scoreUpdate;
     //Displaying result section
     // score.innerText = "";
 
@@ -126,20 +126,25 @@ function iterate(id) {
         selected = op4.value;
     })
     submitButton[0].addEventListener("click", () => {
-        if (id < 4) {
+        if (selected) {
+            verdict[0].innerHTML = "Correct!"
+            verdict[0].style.color = "green";
+            scoreCounter++;
+        }if (selected = null) {
+            alert("Please select answer!");
+        }if (id < 4) {
             id++;
             iterate(id);    
-            console.log(id);
-            // console.log(scoreUpdate);
-        } if (selected == "true") {
-            verdict[0].innerHTML = "Correct!";
-            verdict[0].style.color = "green";
-            scoreUpdate++;
+            // console.log(id);
         } else {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
-        }
+            selected = null;
+        }  
+        score.innerHTML = scoreCounter;
+        return; 
     }) 
+    console.log(scoreCounter);
 }
 //Function for if Quiz is started 
 function startQuiz () {
@@ -148,6 +153,7 @@ function startQuiz () {
     document.querySelector("#op3").style.visibility = "visible";
     document.querySelector("#op4").style.visibility = "visible";
     document.querySelector(".submit").style.visibility  = "visible";
+    
 
 
     //render qText
@@ -198,48 +204,48 @@ var id = 0;
 
 
 ////HIGH SCORE AREA/////////////////////
-const  NUMBOFHIGHSCORES = 5;
-const  HIGHSCORES = "highScores";
+// const  NUMBOFHIGHSCORES = 5;
+// const  HIGHSCORES = "highScores";
 
-const highScoreString = localStorage.getItem(HIGHSCORES);
-const highScores = JSON.parse(highScoreString) ?? [];
+// const highScoreString = localStorage.getItem(HIGHSCORES);
+// const highScores = JSON.parse(highScoreString) ?? [];
 
-const lowestScore = highScores [NUMBOFHIGHSCORES - 1]?.score ?? 0;
+// const lowestScore = highScores [NUMBOFHIGHSCORES - 1]?.score ?? 0;
 
-function checkHighScore(score) {
-    const  highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
-    const lowestScore = highScores[NUMBOFHIGHSCORES - 1]?.score ?? 0;
+// function checkHighScore(score) {
+//     const  highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
+//     const lowestScore = highScores[NUMBOFHIGHSCORES - 1]?.score ?? 0;
 
-    if (score > lowestScore) {
-        saveHighScore(score, highScores);
-        showHighScores();
-    }
-}
+//     if (score > lowestScore) {
+//         saveHighScore(score, highScores);
+//         showHighScores();
+//     }
+// }
 
 
-function saveHighScore (score, highScores) {
-    var username = prompt("You have a high score! Enter name: ")
-    var newScore = { score, username };  
+// function saveHighScore (score, highScores) {
+//     var username = prompt("You have a high score! Enter name: ")
+//     var newScore = { score, username };  
 
-    highScores.push(newScore);
-    highScores.sort((a, b) => b.score - a.score);
-    highScores.splice(NUMBOFHIGHSCORES);
-    localStorage.setItem(HIGHSCORES, JSON.stringify(highScores));
-}
-var highScoreList = document.getElementById(HIGHSCORES);
+//     highScores.push(newScore);
+//     highScores.sort((a, b) => b.score - a.score);
+//     highScores.splice(NUMBOFHIGHSCORES);
+//     localStorage.setItem(HIGHSCORES, JSON.stringify(highScores));
+// }
+// var highScoreList = document.getElementById(HIGHSCORES);
 
-highScoreList.innerHTML = highScores.map((score) =>
-    '<li>${score.score} - ${score.username}'
-    );
+// highScoreList.innerHTML = highScores.map((score) =>
+//     '<li>${score.score} - ${score.username}'
+//     );
 
-function showHighScores () {
-    var highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
-    var highScoreList = document.getElementById(HIGHSCORES);
+// function showHighScores () {
+//     var highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
+//     var highScoreList = document.getElementById(HIGHSCORES);
 
-    highScoreList.innerHTML = highScores
-    .map((score) => `<li>${score.score} - ${score.username}`)
-    .join('');
-}    
+//     highScoreList.innerHTML = highScores
+//     .map((score) => `<li>${score.score} - ${score.username}`)
+//     .join('');
+// }    
 
 
 
