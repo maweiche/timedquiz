@@ -8,42 +8,25 @@
     </head>
     <body>
         <header>
-            <div class= "#">Quiz Time Baby!!!!</div>
-            <button class="start-button">Start</button>
-
-            <div class= "card timer">
-                <div class = "timer-text">
-                    <!-- fix timer count from 10 -->
-                <div class="large-font timer-count">60</div>
-                <h3>seconds remaining</h3>
-            </div>
-        </header>
-
-        <main>
-            <section>
-                <article class="card question">
-                    <div class="question-words">This is a timed quiz, you have 60 seconds. For every wrong answer you lose 5 seconds from the clock. Good luck!</div>
-                </article>
-                <article class="card optionsWords">
-                    <button class = "option" id ="op1" ></button>
-                    <button class = "option" id ="op2"></button>
-                    <button class = "option" id ="op3"></button>
-                    <button class = "option" id ="op4"></button>
-                </article>
-                <article class="card">
-                    <button class="submit">Submit</button>
-                    <!-- <button class="next">Next</button> -->
-                </article>
-                <article class="card">
-                    <h3 class="verdict"></h3>
-                </article>
+            <section id=highScoreContainer>
+                <button id="showHighScores" >High Scores</button>
             </section>
 
             <section>
-                <div class="card results highScores">
+                <button class="start-button" >Start</button>
+            </section>    
+
+            <section>
+                <p>
+                    Seconds Left: <span class="large-font timer-count">60</span>
+                </p>
+            </section>
+
+            <!-- </section>
+                <article class="card results highScores">
                     <div class="score-container">
                     <h2>Score: <span class="score">0</span></h2>    
-                    </div> 
+                    </article> 
                 <br/>
                 <article>
                     <h3 >Enter Initials to store score:</h3>
@@ -52,7 +35,52 @@
                     <button class="saveScores">Save</button> 
                 </article>        
                 </div>
+
+            <h3>Quiz Time Baby!!!!</h3>
+            <button class="start-button">Start</button>
+            
+
+            <section class= "card timer">
+                <div class = "timer-text">
+                 
+                <!-- <p class="large-font timer-count">60</p>
+                <h3>seconds remaining</h3>
+                </section>
+
+                 -->
+        </header>
+
+        <main>
+            <section>
+                <article class="card question">
+                    <p class="question-words">This is a timed quiz, you have 60 seconds. For every wrong answer you lose 5 seconds from the clock. Good luck!</p>
+                </article>
+                <article class="card optionsWords">
+                    <button class = "option" id ="op1" ></button>
+                    <button class = "option" id ="op2"></button>
+                    <button class = "option" id ="op3"></button>
+                    <button class = "option" id ="op4"></button>
+                </article>
+                <article id="loseGameScreenContainer">
+                    <h3>Enter your initials.</h3>
+                    <input id="userName" type="text">
+                    <button id="submitScoreButton">Submit and View Scores</button>
+                </article>
+                <article class="card">
+                    <button class="submit">Submit</button>
+                    <!-- <button class="next">Next</button> -->
+                </article>
+                <article class="card">
+                    <h3>Current Score: <span id="currentScore"></span></h3>
+                    <h3 class="verdict"></h3>
+                </article>
+                <article id="highScoreContainer" style="display: none;">
+                    <p id="userName">Name</p>
+                    <p id="storedScore">Score</p>
+                </article>
             </section>
+
+
         </main>
         <script src="assets/js/script.js"></script>
     </body>

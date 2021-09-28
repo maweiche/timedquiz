@@ -11,17 +11,20 @@ var scoreToRecord = document.querySelector(".scoreToRecord");
 var saveScores = document.getElementsByClassName(".saveScores");
 var resetButton = document.getElementById(".resetButton");
 var highScores = document.querySelector(".highScores");
+var highScoreBox = document.getElementById("highscoreContainer");
+var currentScoreEl = document.getElementById("currentScore");
 
 var scoreCounter = 0;
 var isWin = false;
 var timer;
 var timerCount;
-score.innerHTML = scoreCounter;
+
 document.querySelector("#op1").style.visibility = "hidden";
 document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
+
 // document.querySelector(".highScores").style.visibility = "hidden";
 //Array of questions
 var questions = [
@@ -78,18 +81,20 @@ function loseGame() {
     document.querySelector("#op2").style.visibility = "hidden";
     document.querySelector("#op3").style.visibility = "hidden";
     document.querySelector("#op4").style.visibility = "hidden";
-    document.querySelector(".highScores").style.visibility = "visible";
+    // document.querySelector(".highScores").style.visibility = "visible";
     clearInterval(timer);
-
-        function storeScoreInput() {
-        var saveInput = {
-            initials: userName.value.trim(),
-            score: scoreCounter
-        };
-        localStorage.setItem("saveInput", JSON.stringify(saveInput));
-            console.log(localStorage.setItem("saveInput", JSON.stringify(saveInput)));
-        };
-        document.getElementsByClassName(".saveScores").addEventListener("click", storeScoreInput());
+    currentScoreEl.textContent = scoreCounter;
+    var askInitials = prompt("Enter your initials.");
+    console.log(askInitials);
+        // function storeScoreInput() {
+        // var saveInput = {
+        //     initials: askInitials.trim(),
+        //     score: scoreCounter
+        // };
+        // localStorage.setItem("saveInput", JSON.stringify(saveInput));
+        //     console.log(localStorage.setItem("saveInput", JSON.stringify(saveInput)));
+        // };
+        // document.getElementsByClassName(".saveScores").addEventListener("click", storeScoreInput());
         
     
     
@@ -155,34 +160,35 @@ function iterate(id) {
         op4.style.backgroundColor = "pink";
         selected = op4.value;
     })
-    submitButton[0].addEventListener("click", () => {
-        id++;
-        if (id < 4) {
-            
-            iterate(id);    
-            // console.log(id);
-        }
-        if (selected == "true") {
-            verdict[0].innerHTML = "Correct!"
-            verdict[0].style.color = "green";
-            scoreCounter++;
-        } if (selected == "false") {
-            verdict[0].innerHTML = "Wrong!";
-            verdict[0].style.color = "Red!";
-            timerCount -= 5;
-        }if (qText.textContent === "Game Over!"){
-            loseGame();
-        } if (id > 3){
-            score.innerHTML = scoreCounter;
-            loseGame();
-            return;
-        }   
-        score.innerHTML = scoreCounter;
-        return;
-        
-    }) 
+
     // console.log(scoreCounter);
 }
+submitButton[0].onclick = function(event) {
+    id++;
+    console.log("clicking on submit btn");
+    if (id < 4) {
+        iterate(id);    
+        console.log(id);
+    }
+    if (event.target[4] == "true") {
+        verdict[0].innerHTML = "Correct!"
+        verdict[0].style.color = "green";
+        scoreCounter++;
+        console.log(scoreCounter);
+    } if (event.target[4] == "false") {
+        verdict[0].innerHTML = "Wrong!";
+        verdict[0].style.color = "Red!";
+        timerCount -= 5;
+    }if (qText.textContent === "Game Over!"){
+        loseGame();
+    } if (id > 3){
+        loseGame();
+        return;
+    };
+    return;
+    
+} 
+
 //Function for if Quiz is started 
 function startQuiz () {
     document.querySelector("#op1").style.visibility = "visible";
@@ -258,31 +264,6 @@ var id = 0;
 //         showHighScores();
 //     }
 // }
-
-
-// function saveHighScore (score, highScores) {
-//     var username = prompt("You have a high score! Enter name: ")
-//     var newScore = { score, username };  
-
-//     highScores.push(newScore);
-//     highScores.sort((a, b) => b.score - a.score);
-//     highScores.splice(NUMBOFHIGHSCORES);
-//     localStorage.setItem(HIGHSCORES, JSON.stringify(highScores));
-// }
-// var highScoreList = document.getElementById(HIGHSCORES);
-
-// highScoreList.innerHTML = highScores.map((score) =>
-//     '<li>${score.score} - ${score.username}'
-//     );
-
-// function showHighScores () {
-//     var highScores = JSON.parse(localStorage.getItem(HIGHSCORES)) ?? [];
-//     var highScoreList = document.getElementById(HIGHSCORES);
-
-//     highScoreList.innerHTML = highScores
-//     .map((score) => `<li>${score.score} - ${score.username}`)
-//     .join('');
-// }    
 
 
 
