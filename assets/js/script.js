@@ -75,6 +75,12 @@ function loseGame() {
     //scoreCounter
     startButton.disabled = false;
     document.querySelector(".submit").style.visibility  = "hidden";
+    document.querySelector("#op1").style.visibility = "hidden";
+    document.querySelector("#op2").style.visibility = "hidden";
+    document.querySelector("#op3").style.visibility = "hidden";
+    document.querySelector("#op4").style.visibility = "hidden";
+    document.querySelector(".highScores").style.visibility = "visible";
+    clearInterval(timer);
 }
 
 //maybe change const to var if funky
@@ -138,27 +144,32 @@ function iterate(id) {
         selected = op4.value;
     })
     submitButton[0].addEventListener("click", () => {
+        id++;
+        if (id < 4) {
+            
+            iterate(id);    
+            console.log(id);
+        }
         if (selected == "true") {
             verdict[0].innerHTML = "Correct!"
             verdict[0].style.color = "green";
             scoreCounter++;
-        }if (id < 4) {
-            id++;
-            iterate(id);    
-            // console.log(id);
         } if (selected == "false") {
             verdict[0].innerHTML = "Wrong!";
             verdict[0].style.color = "Red!";
             timerCount -= 5;
         }if (qText.textContent === "Game Over!"){
             loseGame();
-            iterate(id) = false;
-        }    
+        } if (id > 3){
+            score.innerHTML = scoreCounter;
+            loseGame();
+            return;
+        }   
         score.innerHTML = scoreCounter;
         return;
         
     }) 
-    console.log(scoreCounter);
+    // console.log(scoreCounter);
 }
 //Function for if Quiz is started 
 function startQuiz () {
@@ -167,7 +178,7 @@ function startQuiz () {
     document.querySelector("#op3").style.visibility = "visible";
     document.querySelector("#op4").style.visibility = "visible";
     document.querySelector(".submit").style.visibility  = "visible";
-    document.querySelector(".highScores").style.visibility = "visible";
+
     
 
 
@@ -195,8 +206,6 @@ function startTimer() {
       if (timerCount >= 0) {
         // Tests if win condition is met
         if (qText.textContent === "Game Over!") {
-          // Clears interval and stops timer
-          clearInterval(timer);
           loseGame();
         }
       }
