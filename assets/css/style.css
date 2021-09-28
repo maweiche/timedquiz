@@ -45,7 +45,7 @@ button {
     letter-spacing: 0.21px;
     line-height: 16px;
     max-width: 255px;
-    padding: 20px 52px;
+    padding: 15px 25px;
     text-align: center;
     transition-duration: 0.15s;
     transition-property: backgroudn-color;
@@ -70,7 +70,7 @@ main {
 section {
     flex: 0 auto;
     padding: 8px;
-    margin-top: 50px;
+    margin-top: 5 px;
     background-color: pink;
     border-radius: 8px;
 }
@@ -92,11 +92,12 @@ section {
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
         rgba(60, 64,67, 0.15) 0 2px 4px 3px;
         margin: auto;
-        padding: 20px;
+        padding: 5px;
 }
 
 .question-words, .verdict {
-    line-height: 100px;
+    line-height: 20px;
+    padding: 10px;
 }
 
 .optionsWords {
@@ -106,7 +107,7 @@ section {
     padding: 5px;
     width: 80vw;
     height: 20vh;
-    background-color: darkblue;
+    background-color: rgb(68, 173, 68);
 }
 
 #op1, #op2, #op3, #op4 {
@@ -134,7 +135,6 @@ section {
 
 .timer {
     height: 100px;
-    padding: 16px;
     font-weight: bolder;
     background: red;
     color: white;
@@ -142,5 +142,6 @@ section {
 }
 
 .timer-text{
-    padding: 5px;
+    text-align: center;
+    overflow: hidden;
 }

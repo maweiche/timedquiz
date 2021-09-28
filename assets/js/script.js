@@ -22,7 +22,7 @@ document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
-document.querySelector(".highScores").style.visibility = "hidden";
+// document.querySelector(".highScores").style.visibility = "hidden";
 //Array of questions
 var questions = [
     {
@@ -82,17 +82,16 @@ function loseGame() {
     clearInterval(timer);
 
         function storeScoreInput() {
-        scoreToRecord = scoreCounter;
         var saveInput = {
-            initials: userName.value,
-            score: scoreToRecord.value.trim()
+            initials: userName.value.trim(),
+            score: scoreCounter
         };
-        document.getElementsByClassName(".saveScores").addEventListener("click", function(event) {
-            event.preventDefault();
-            storeScoreInput ();
-        });
         localStorage.setItem("saveInput", JSON.stringify(saveInput));
-    };
+            console.log(localStorage.setItem("saveInput", JSON.stringify(saveInput)));
+        };
+        document.getElementsByClassName(".saveScores").addEventListener("click", storeScoreInput());
+        
+    
     
 }
 
@@ -161,7 +160,7 @@ function iterate(id) {
         if (id < 4) {
             
             iterate(id);    
-            console.log(id);
+            // console.log(id);
         }
         if (selected == "true") {
             verdict[0].innerHTML = "Correct!"
@@ -232,6 +231,8 @@ function startTimer() {
 };
 
 var id = 0;
+
+
 
 
 
