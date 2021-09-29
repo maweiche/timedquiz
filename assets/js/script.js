@@ -11,10 +11,12 @@ var userName = document.querySelector(".userName");
 var scoreToRecord = document.querySelector(".scoreToRecord");
 var saveScoreButton = document.getElementById("submitScoreButton");
 var resetButton = document.getElementById(".resetButton");
-var highScores = document.querySelector(".highScores");
+var highScoresContainer = document.getElementById("highScoreContainer");
 var highScoreBox = document.getElementById("highscoreContainer");
 var currentScoreEl = document.getElementById("currentScore");
-var loseGameScreenEl = document.getElementById("loseGameScreenContainer")
+var loseGameScreenEl = document.getElementById("loseGameScreenContainer");
+var userNameEl = document.getElementById("userNameEl");
+
 
 var scoreCounter = 0;
 var isWin = false;
@@ -22,6 +24,7 @@ var timer;
 var timerCount;
 var selected ;
 var id = 0;
+var scoresArray = [];
 
 //Array of questions
 var questions = [
@@ -75,11 +78,14 @@ document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
+highScoresContainer.style.display = "none";
 
 // document.querySelector(".highScores").style.visibility = "hidden";
 
 //------------------FUNCTIONS 
 
+
+//----GAME OVER SCREEN FUNCTION
 //The loseGame function is called when timer reaches 0
 function loseGame() {
     qText.textContent = "The Quiz is now over!"
@@ -92,21 +98,34 @@ function loseGame() {
     // document.querySelector(".highScores").style.visibility = "visible";
     clearInterval(timer);
     currentScoreEl.textContent = scoreCounter;
+
     //Make it visible 
     loseGameScreenEl.style.display = "flex"; 
-    // var askInitials = prompt("Enter your initials.");
-    // console.log(askInitials);
-        // function storeScoreInput() {
-        // var saveInput = {
-        //     initials: askInitials.trim(),
-        //     score: scoreCounter
-        // };
-        // localStorage.setItem("saveInput", JSON.stringify(saveInput));
-        //     console.log(localStorage.setItem("saveInput", JSON.stringify(saveInput)));
-        // };
-        // document.getElementsByClassName(".saveScores").addEventListener("click", storeScoreInput());
-        
-    
+    saveScoreButton.addEventListener("click", function() {
+        var saveInput = {
+            initials: userNameEl.value.trim(),
+            score: scoreCounter
+        };
+
+        var saveInput = { userName: userNameEl.value.trim(), userScore: scoreCounter};
+                    //if it does not exist already, push first score
+                    if (typeof localStorage.getItem("scores") == "object") {
+                        scoresArray.push(saveInput);
+                        localStorage.setItem("scores", JSON.stringify(scoresArray));
+                        //if does not exist pull scores, push ne
+                    } else {
+                        var pulledScores = JSON.parse(localStorage.getItem("scores"));
+                        pulledScores.push(saveInput);
+                        localStorage.setItem("scores", JSON.stringify(pulledscores));
+                    }
+                    setTimeout(function () {
+                        loseGameScreenEl.style.display = "none";
+                        showHighScores();
+                    }, 100);
+                });
+}
+
+function showHighScores() {
     
 }
 
@@ -170,7 +189,6 @@ function iterate(id) {
         op4.style.backgroundColor = "pink";
         selected = op4.value;
     })
-
     // console.log(scoreCounter);
 }
 submitButton[0].onclick = function(event) {
