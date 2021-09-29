@@ -7,16 +7,18 @@ var startButton = document.querySelector(".start-button");
 var submitButton = document.getElementsByClassName("submit");
 var nextButton = document.getElementsByClassName("next")[0];
 var verdict = document.getElementsByClassName("verdict");
-var userName = document.querySelector(".userName");
+var userName = document.getElementById("userNameEl");
 var scoreToRecord = document.querySelector(".scoreToRecord");
 var saveScoreButton = document.getElementById("submitScoreButton");
 var resetButton = document.getElementById(".resetButton");
-var highScoresContainer = document.getElementById("highScoreContainer");
-var highScoreBox = document.getElementById("highscoreContainer");
+var highScoreBox = document.getElementById("highScoreContainer");
 var currentScoreEl = document.getElementById("currentScore");
 var loseGameScreenEl = document.getElementById("loseGameScreenContainer");
 var userNameEl = document.getElementById("userNameEl");
-
+var questionContainerEl = document.getElementById("question");
+var showHighScoresBtn = document.getElementById("showHighScores");
+var storedNameEl = document.getElementById("storedName");
+var storedScoreEl = document.getElementById("storedScore");
 
 var scoreCounter = 0;
 var isWin = false;
@@ -26,7 +28,7 @@ var selected ;
 var id = 0;
 var scoresArray = [];
 
-//Array of questions
+//----------------Array of questions
 var questions = [
     {
         id: 0,
@@ -69,8 +71,9 @@ var questions = [
         q: "Game Over!"
     }
     ];
-//New idea
+//Event Listener for Start Quiz button
 startButton.addEventListener("click", startQuiz);
+
 
 //Hide on start 
 document.querySelector("#op1").style.visibility = "hidden";
@@ -78,9 +81,7 @@ document.querySelector("#op2").style.visibility = "hidden";
 document.querySelector("#op3").style.visibility = "hidden";
 document.querySelector("#op4").style.visibility = "hidden";
 document.querySelector(".submit").style.visibility  = "hidden";
-highScoresContainer.style.display = "none";
 
-// document.querySelector(".highScores").style.visibility = "hidden";
 
 //------------------FUNCTIONS 
 
@@ -102,34 +103,53 @@ function loseGame() {
     //Make it visible 
     loseGameScreenEl.style.display = "flex"; 
     saveScoreButton.addEventListener("click", function() {
-        var saveInput = {
-            initials: userNameEl.value.trim(),
-            score: scoreCounter
-        };
 
         var saveInput = { userName: userNameEl.value.trim(), userScore: scoreCounter};
                     //if it does not exist already, push first score
                     if (typeof localStorage.getItem("scores") == "object") {
                         scoresArray.push(saveInput);
                         localStorage.setItem("scores", JSON.stringify(scoresArray));
-                        //if does not exist pull scores, push ne
                     } else {
                         var pulledScores = JSON.parse(localStorage.getItem("scores"));
                         pulledScores.push(saveInput);
-                        localStorage.setItem("scores", JSON.stringify(pulledscores));
+                        localStorage.setItem("scores", JSON.stringify(pulledScores));
                     }
-                    setTimeout(function () {
-                        loseGameScreenEl.style.display = "none";
-                        showHighScores();
-                    }, 100);
+
                 });
+                showHighScoresBtn.addEventListener("click", function () {
+                    highScoreBox.innerHTML = localStorage.getItem("scores").userNameEl;
+                })
 }
-
+////Function to Show stored High Scores
 function showHighScores() {
-    
-}
+    highScoreBox.style.display = "flex"
+    if (pulledScores = null) {
+        storedNameEl.style.display = "none";
+        storedScoreEl.style.display = "none";
+        qText.textContent = "No Data";
+    } else {
+        storedNameEl.style.display = "flex";
+        storedScoreEl.style.display = "flex";
+        var allHighScores = JSON.parse(localStorage.getItem("scores"));
+        for (var i = 0; i < allHighScores.length; i++)
+            var newNmBox = document.createElement("h4");
+            var newScBox = document.createElement("h4");
+            highScoreBox.appendChild(newNmBox);
+            highScoreBox.appendChild(newScBox);
+            newNmBox.style.display = "flex";
+            newScBox.style.display = "flex";
+            newNmBox.style.width = "50%";
+            newScBox.style.width = "50%";
 
-//maybe change const to var if funky
+            var forNm = document.createElement("h4");
+            var forSc = document.createElement("h4");
+            newNmBox.appendChild(forNm);
+            newScBox.appendChild(forSc);
+            forNm.textContent = allHighScores[i].userName;
+            forSc.textContent = allHighScores[i].userScore;
+    }
+}
+/////Function to iterate through Questions Array
 function iterate(id) {
 
     // score.innerHTML = scoreUpdate;
@@ -156,7 +176,7 @@ function iterate(id) {
     op3.value = questions[id].a[2].isCorrect;
     op4.value = questions[id].a[3].isCorrect;
 
-
+/////Add event listeners for click on Question's "Answer Option"
     op1.addEventListener("click", () => {
         op1.style.backgroundColor = "pink";
         op2.style.backgroundColor = "green";
@@ -191,6 +211,7 @@ function iterate(id) {
     })
     // console.log(scoreCounter);
 }
+//////Click Event for Answer Option Submission... compares if answer option has true or false value. If true it adds a point to the score counter, if false it takes off 5 seconds from quiz clock.  True returns Correct alert, False returns Wrong alert.
 submitButton[0].onclick = function(event) {
     id++;
     console.log("clicking on submit btn", selected);
@@ -220,24 +241,6 @@ submitButton[0].onclick = function(event) {
     return;
     
 } 
-//Function to loseGameScreen
-// function loseGameScreen() {
-//     loseGameScreen.style.display = "flex";
-//     //hide question box??
-//     saveScore.addEventListener("click", function () {
-//         let scoresInput = { userName: nameInput.value.trim(), userScore: scoreCounter};
-//         //if it does not exist already, push first score
-//         if (typeof localStorage.getItem("scores" == "object") {
-//             scoresArray.push(scoresObject);
-//             localStorage.setItem("scores", JSON.stringify(scoresArray));
-//             //if does not exist pull scores, push ne
-//         } else {
-//             var pulledScores = JSON.parse(localStorage.getItem("scores"));
-//             pulledScores.push(scoresObject);
-//             localStorage.setItem("scores", JSON.stringify(pulledscores));
-//         })
-//     })
-// }
 
 
 //Function for if Quiz is started 
@@ -247,10 +250,6 @@ function startQuiz () {
     document.querySelector("#op3").style.visibility = "visible";
     document.querySelector("#op4").style.visibility = "visible";
     document.querySelector(".submit").style.visibility  = "visible";
-
-    
-
-
     //render qText
     iterate("0");
      // function startGame() {
@@ -259,14 +258,9 @@ function startQuiz () {
     //Prevents start button from being clicked when round is in progress
     startButton.disabled = true;
     startTimer();
-//The gameOver function is called when the game completion condition is met
-function gameOver() {
-    qText.textContent = "The Quiz is now over!"
-    // scoreCounter
-    startButton.disabled = false;
-}
 
 
+///Function to start timer, and if timer runs out it triggers loseGame function to start end of game process
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
