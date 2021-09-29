@@ -9,9 +9,13 @@ This project was designed to create a timed quiz.  Upon loading this application
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-## Deployed Link
+## Screenshot
 
 ![See Live Site](liveScreenshot.png)
+
+## Link to Live Site
+
+* [Deployed Link] (https://maweiche.github.io/timedquiz/)
 
 
 ## Authors
